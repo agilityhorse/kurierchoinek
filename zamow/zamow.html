@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zamów choinkę – Kurier Choinek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #005F5A;
+  --bg-dark:     #004d49;
+  --gold:        #FFD230;
+  --snow:        #F5F2EB;
+  --text-muted:  rgba(245,242,235,0.65);
+  --card-bg:     #fff;
+  --radius:      16px;
+  --radius-pill: 100px;
+  --topbar-h:    36px;
+  --header-h:    68px;
+  --offset:      104px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--snow);min-height:100vh;}
+
+/* ─── TOPBAR ─── */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 101;
+  background: white;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #e8f0ee;
+}
+.topbar-partner {
+  font-size: 0.72rem;
+  color: #555;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.topbar-partner strong {
+  color: #005F5A;
+  font-weight: 700;
+}
+.topbar-partner:hover { color: #005F5A; }
+.topbar-phone {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #005F5A;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.topbar-phone:hover { opacity: 0.75; }
+.topbar-phone-label {
+  font-weight: 400;
+  color: #888;
+  font-size: 0.72rem;
+}
+.topbar-phone svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ─── HEADER ─── */
+.header{position:fixed;top:var(--topbar-h);left:0;right:0;height:var(--header-h);background:rgba(0,77,73,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100;}
+.logo-text{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:900;color:var(--snow);text-decoration:none;letter-spacing:-0.5px;}
+.logo-text span{color:var(--gold);}
+.header-back{display:flex;align-items:center;gap:6px;color:var(--text-muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s;}
+.header-back:hover{color:var(--gold);}
+
+/* ─── PAGE ─── */
+.page{padding-top:var(--offset);}
+
+/* ─── HERO BAR ─── */
+.order-hero{padding:16px 20px 14px;max-width:800px;margin:0 auto;}
+.order-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.order-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,5vw,2.8rem);font-weight:900;line-height:1.1;margin-bottom:6px;}
+.order-title em{color:var(--gold);font-style:normal;}
+.order-sub{font-size:0.82rem;color:var(--text-muted);margin-bottom:20px;}
+.point-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-pill);padding:6px 14px;font-size:0.8rem;color:var(--text-muted);}
+.point-tag strong{color:var(--snow);}
+
+/* ─── BODY ─── */
+.body{max-width:800px;margin:0 auto;padding:24px 20px 40px;}
+
+/* ─── FOOTER TRUST ─── */
+.trust-footer{background:#003a36;border-top:1px solid rgba(255,255,255,0.08);padding:36px 20px 48px;}
+.trust-inner{max-width:800px;margin:0 auto;}
+.trust-badge{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.trust-badge-text{font-size:0.78rem;color:rgba(245,242,235,0.55);line-height:1.5;}
+.trust-badge-text strong{display:block;font-size:0.95rem;color:#F5F2EB;font-family:'Cormorant Garamond',serif;font-weight:700;margin-bottom:1px;}
+.trust-desc{font-size:0.82rem;color:rgba(245,242,235,0.6);line-height:1.7;margin-bottom:20px;}
+.trust-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+.trust-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:5px 12px;font-size:0.72rem;color:rgba(245,242,235,0.7);}
+.trust-pill span{color:#FFD230;}
+.trust-link{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;color:#FFD230;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(255,210,48,0.3);padding-bottom:1px;transition:opacity 0.2s;}
+.trust-link:hover{opacity:0.75;}
+.trust-divider{border:none;border-top:1px solid rgba(255,255,255,0.07);margin:20px 0;}
+.trust-fine{font-size:0.7rem;color:rgba(245,242,235,0.35);line-height:1.6;}
+
+/* ─── SCREEN ─── */
+.screen{display:none;}
+.screen.on{display:block;animation:fadeUp 0.3s ease both;}
+
+/* ─── SCREEN TITLE ─── */
+.screen-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:900;color:var(--snow);margin-bottom:4px;}
+.screen-sub{font-size:0.82rem;color:var(--text-muted);margin-bottom:20px;}
+
+/* ─── CARD GRID 2x2 ─── */
+.grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(min-width:600px){.grid-2x2{grid-template-columns:repeat(4,1fr);}}
+
+.pick-card{border:2px solid rgba(255,255,255,0.12);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.06);position:relative;}
+.pick-card:hover{border-color:rgba(255,210,48,0.5);background:rgba(255,255,255,0.1);transform:translateY(-2px);}
+.pick-card.sel{border-color:var(--gold);background:rgba(255,210,48,0.08);box-shadow:0 0 0 3px rgba(255,210,48,0.2);}
+.pick-card.sel::after{content:'✓';position:absolute;top:10px;right:10px;width:24px;height:24px;background:var(--gold);color:#003a36;border-radius:50%;font-size:0.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;}
+
+.card-img{width:100%;height:160px;background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0.04) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:1px solid rgba(255,255,255,0.08);overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-img svg{width:36px;height:36px;opacity:0.25;}
+.card-info{padding:12px 14px 14px;}
+.card-name{font-size:0.88rem;font-weight:600;color:var(--snow);margin-bottom:2px;}
+.card-latin{font-size:0.7rem;color:var(--text-muted);font-style:italic;margin-bottom:4px;}
+.card-price{font-size:0.82rem;color:var(--gold);font-weight:600;}
+.card-none .card-img{font-size:1.6rem;color:rgba(255,255,255,0.2);}
+.card-none .card-name{color:var(--text-muted);}
+
+/* ─── GRID 3 cols (gatunki) ─── */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:500px){.grid-3{grid-template-columns:1fr 1fr;}}
+
+/* ─── SIZE LIST ─── */
+.size-list{display:flex;flex-direction:column;gap:8px;}
+.size-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border:2px solid rgba(255,255,255,0.1);border-radius:12px;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.05);}
+.size-row:hover{border-color:rgba(255,210,48,0.4);background:rgba(255,255,255,0.08);}
+.size-row.sel{border-color:var(--gold);background:rgba(255,210,48,0.08);box-shadow:0 0 0 3px rgba(255,210,48,0.15);}
+.size-row-left{display:flex;align-items:center;gap:12px;}
+.size-radio{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0;}
+.size-row.sel .size-radio{border-color:var(--gold);background:var(--gold);}
+.size-radio-dot{width:8px;height:8px;border-radius:50%;background:#003a36;opacity:0;transition:opacity 0.2s;}
+.size-row.sel .size-radio-dot{opacity:1;}
+.size-label{font-size:0.95rem;font-weight:600;color:var(--snow);}
+.size-price-tag{font-size:0.9rem;font-weight:700;color:var(--gold);}
+
+/* ─── EXTRAS ─── */
+.extras-list{display:flex;flex-direction:column;gap:10px;}
+.extra-row{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border:2px solid rgba(255,255,255,0.1);border-radius:12px;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.05);}
+.extra-row:hover{border-color:rgba(255,210,48,0.4);background:rgba(255,255,255,0.08);}
+.extra-row.sel{border-color:var(--gold);background:rgba(255,210,48,0.08);}
+.extra-left{display:flex;align-items:center;gap:12px;}
+.extra-check{width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0;}
+.extra-row.sel .extra-check{border-color:var(--gold);background:var(--gold);}
+.extra-check svg{width:12px;height:12px;opacity:0;transition:opacity 0.2s;}
+.extra-row.sel .extra-check svg{opacity:1;}
+.extra-name{font-size:0.92rem;font-weight:600;color:var(--snow);}
+.extra-desc{font-size:0.75rem;color:var(--text-muted);margin-top:1px;}
+.extra-price{font-size:0.9rem;font-weight:700;color:var(--gold);white-space:nowrap;}
+
+/* ─── FORM ─── */
+.white-card{background:#fff;border-radius:var(--radius);padding:26px;color:#1a1a1a;}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#005F5A;margin-bottom:4px;}
+.form-sub{font-size:0.82rem;color:#888;margin-bottom:20px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){.form-row{grid-template-columns:1fr;}}
+.form-group{margin-bottom:14px;}
+.form-label{display:block;font-size:0.78rem;font-weight:600;color:#555;margin-bottom:5px;letter-spacing:0.3px;}
+.form-label em{color:#e55;font-style:normal;}
+.form-input{width:100%;border:1.5px solid #e0e0e0;border-radius:10px;padding:12px 15px;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#1a1a1a;background:#fafafa;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;}
+.form-input:focus{border-color:#005F5A;background:#fff;box-shadow:0 0 0 3px rgba(0,95,90,0.08);}
+.form-input.err{border-color:#e55;}
+.field-err{font-size:0.74rem;color:#e55;margin-top:3px;display:none;}
+
+/* ─── SUMMARY ─── */
+.summary-card{background:#fff;border-radius:var(--radius);padding:24px;color:#1a1a1a;margin-bottom:16px;}
+.summary-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#005F5A;margin-bottom:16px;}
+.s-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;font-size:0.88rem;color:#666;border-bottom:1px solid #f0f0f0;}
+.s-row:last-of-type{border-bottom:none;}
+.s-row strong{color:#1a1a1a;text-align:right;max-width:55%;}
+.s-total{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:14px;border-top:2px solid rgba(0,95,90,0.12);font-weight:700;color:#005F5A;}
+.s-total-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:900;}
+.confirm-note{background:rgba(255,210,48,0.1);border:1.5px solid rgba(255,210,48,0.35);border-radius:10px;padding:13px 16px;font-size:0.84rem;color:var(--snow);line-height:1.55;margin-bottom:20px;}
+
+/* ─── BUTTONS ─── */
+.btn{width:100%;border:none;border-radius:var(--radius-pill);padding:17px 24px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:9px;-webkit-tap-highlight-color:transparent;}
+.btn-gold{background:var(--gold);color:#003a36;}
+.btn-gold:hover{opacity:0.92;box-shadow:0 4px 20px rgba(255,210,48,0.35);}
+.btn-gold:active{transform:scale(0.98);}
+.btn-gold:disabled{background:#888;color:#ccc;cursor:not-allowed;box-shadow:none;}
+.btn-ghost{background:rgba(255,255,255,0.08);color:var(--text-muted);border:1.5px solid rgba(255,255,255,0.12);margin-top:12px;min-height:52px;}
+.btn-ghost:hover{background:rgba(255,255,255,0.14);color:var(--snow);}
+
+/* ─── SUCCESS ─── */
+.success{text-align:center;padding:52px 0;}
+.success-check{width:80px;height:80px;background:rgba(255,210,48,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:900;margin-bottom:10px;}
+.success-sub{color:var(--text-muted);font-size:0.95rem;line-height:1.65;margin-bottom:30px;}
+.success-detail{background:#fff;border-radius:var(--radius);padding:20px 24px;text-align:left;max-width:440px;margin:0 auto 28px;color:#1a1a1a;}
+.sd-row{display:flex;justify-content:space-between;font-size:0.85rem;padding:6px 0;border-bottom:1px solid #f2f2f2;color:#666;}
+.sd-row:last-child{border-bottom:none;}
+.sd-row strong{color:#1a1a1a;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a href="https://krainachoinek.pl" target="_blank" class="topbar-partner">
+    Napędzane przez <strong>Kraina Choinek</strong>
+  </a>
+  <a href="tel:+48800123456" class="topbar-phone">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2z"/></svg>
+    <span class="topbar-phone-label">tel.</span>
+    800 123 456
+  </a>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="/" class="logo-text">Kurier<span>Choinek</span></a>
+  <a href="/" class="header-back">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    Strona główna
+  </a>
+</header>
+
+<div class="page">
+  <!-- HERO -->
+  <div class="order-hero">
+    <div class="point-tag">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD230" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+      Punkt: <strong id="pointTag">–</strong>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="order-eyebrow" id="stepLabel">Krok 1 — Stojak</div>
+    <h1 class="order-title" id="heroTitle">Czy potrzebujesz <em>stojak?</em></h1>
+    <div class="order-sub" id="heroSub">Solidne stojaki EasyFix dopasowane do każdego rozmiaru</div>
+
+    <!-- S1: STOJAK -->
+    <div class="screen on" id="s1">
+      <div class="grid-2x2">
+        <div class="pick-card" data-v="s" data-lbl="Stojak EasyFix S" data-p="199" onclick="pick('stand',this)">
+          <div class="card-img"><img src="/images/stojak-s.webp" alt="Stojak EasyFix S"></div>
+          <div class="card-info">
+            <div class="card-name">Stojak EasyFix S</div>
+            <div class="card-price">199 zł</div>
+          </div>
+        </div>
+        <div class="pick-card" data-v="m" data-lbl="Stojak EasyFix M" data-p="199" onclick="pick('stand',this)">
+          <div class="card-img"><img src="/images/stojak-m.webp" alt="Stojak EasyFix M"></div>
+          <div class="card-info">
+            <div class="card-name">Stojak EasyFix M</div>
+            <div class="card-price">199 zł</div>
+          </div>
+        </div>
+        <div class="pick-card" data-v="l" data-lbl="Stojak EasyFix L" data-p="199" onclick="pick('stand',this)">
+          <div class="card-img"><img src="/images/stojak-l.webp" alt="Stojak EasyFix L"></div>
+          <div class="card-info">
+            <div class="card-name">Stojak EasyFix L</div>
+            <div class="card-price">199 zł</div>
+          </div>
+        </div>
+        <div class="pick-card card-none" data-v="none" data-lbl="" data-p="0" onclick="pick('stand',this)">
+          <div class="card-img">✕</div>
+          <div class="card-info">
+            <div class="card-name" style="color:var(--text-muted)">Nie, dziękuję</div>
+            <div class="card-price" style="color:rgba(245,242,235,0.25)">–</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-gold" id="b1" style="margin-top:22px" onclick="goTo(2)" disabled>
+        Dalej — wybierz choinkę
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </button>
+    </div>
+
+    <!-- S2: GATUNEK -->
+    <div class="screen" id="s2">
+      <div class="grid-3">
+        <div class="pick-card" data-v="swierek-pospolity" data-lbl="Świerk pospolity" data-p="0" onclick="pick('species',this)">
+          <div class="card-img"><img src="/images/swierek-pospolity.webp" alt="Świerk pospolity"></div>
+          <div class="card-info">
+            <div class="card-name">Świerk pospolity</div>
+            <div class="card-latin">Picea Abies</div>
+          </div>
+        </div>
+        <div class="pick-card" data-v="jodla-kaukaska" data-lbl="Jodła kaukaska" data-p="0" onclick="pick('species',this)">
+          <div class="card-img"><img src="/images/jodla-kaukaska.webp" alt="Jodła kaukaska"></div>
+          <div class="card-info">
+            <div class="card-name">Jodła kaukaska</div>
+            <div class="card-latin">Abies Nordmanniana</div>
+          </div>
+        </div>
+        <div class="pick-card" data-v="swierek-srebrny" data-lbl="Świerk srebrny" data-p="0" onclick="pick('species',this)">
+          <div class="card-img"><img src="/images/swierk-srebny.webp" alt="Świerk srebrny"></div>
+          <div class="card-info">
+            <div class="card-name">Świerk srebrny</div>
+            <div class="card-latin">Picea Pungens</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-gold" id="b2" style="margin-top:22px" onclick="goTo(3)" disabled>
+        Dalej — wybierz rozmiar
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </button>
+      <button class="btn btn-ghost" onclick="goTo(1)">Wróć</button>
+    </div>
+
+    <!-- S3: ROZMIAR -->
+    <div class="screen" id="s3">
+      <div class="size-list">
+        <div class="size-row" data-size="125-150" data-price="200" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">125 – 150 cm</span>
+          </div>
+          <span class="size-price-tag">200 zł</span>
+        </div>
+        <div class="size-row" data-size="150-175" data-price="260" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">150 – 175 cm</span>
+          </div>
+          <span class="size-price-tag">260 zł</span>
+        </div>
+        <div class="size-row" data-size="175-200" data-price="300" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">175 – 200 cm</span>
+          </div>
+          <span class="size-price-tag">300 zł</span>
+        </div>
+        <div class="size-row" data-size="200-220" data-price="350" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">200 – 220 cm</span>
+          </div>
+          <span class="size-price-tag">350 zł</span>
+        </div>
+        <div class="size-row" data-size="220-250" data-price="370" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">220 – 250 cm</span>
+          </div>
+          <span class="size-price-tag">370 zł</span>
+        </div>
+        <div class="size-row" data-size="250-275" data-price="380" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">250 – 275 cm</span>
+          </div>
+          <span class="size-price-tag">380 zł</span>
+        </div>
+        <div class="size-row" data-size="275-300" data-price="430" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">275 – 300 cm</span>
+          </div>
+          <span class="size-price-tag">430 zł</span>
+        </div>
+        <div class="size-row" data-size="300-350" data-price="450" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">300 – 350 cm</span>
+          </div>
+          <span class="size-price-tag">450 zł</span>
+        </div>
+        <div class="size-row" data-size="350-400" data-price="500" onclick="pickSize(this)">
+          <div class="size-row-left">
+            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <span class="size-label">350 – 400 cm</span>
+          </div>
+          <span class="size-price-tag">500 zł</span>
+        </div>
+      </div>
+      <button class="btn btn-gold" id="b3" style="margin-top:22px" onclick="goTo(4)" disabled>
+        Dalej — dodatki
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </button>
+      <button class="btn btn-ghost" onclick="goTo(2)">Wróć</button>
+    </div>
+
+    <!-- S4: DODATKI -->
+    <div class="screen" id="s4">
+      <div class="extras-list">
+        <div class="extra-row" data-v="wniesienie" data-lbl="Wniesienie choinki" data-p="50" onclick="toggleExtra(this)">
+          <div class="extra-left">
+            <div class="extra-check">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#003a36" stroke-width="2.5"><polyline points="1.5,6 4.5,9 10.5,3"/></svg>
+            </div>
+            <div>
+              <div class="extra-name">Wniesienie choinki</div>
+              <div class="extra-desc">Kurier wniesie choinkę na wskazane piętro</div>
+            </div>
+          </div>
+          <div class="extra-price">+50 zł</div>
+        </div>
+        <div class="extra-row" data-v="osadzenie" data-lbl="Osadzenie w stojaku" data-p="50" onclick="toggleExtra(this)">
+          <div class="extra-left">
+            <div class="extra-check">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#003a36" stroke-width="2.5"><polyline points="1.5,6 4.5,9 10.5,3"/></svg>
+            </div>
+            <div>
+              <div class="extra-name">Osadzenie w stojaku</div>
+              <div class="extra-desc">Kurier zamontuje choinkę w stojaku na miejscu</div>
+            </div>
+          </div>
+          <div class="extra-price">+50 zł</div>
+        </div>
+      </div>
+      <button class="btn btn-gold" style="margin-top:22px" onclick="goTo(5)">
+        Dalej — dane dostawy
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </button>
+      <button class="btn btn-ghost" onclick="goTo(3)">Wróć</button>
+    </div>
+
+    <!-- S5: DANE -->
+    <div class="screen" id="s5">
+      <div class="white-card">
+        <div class="form-title">Dane dostawy</div>
+        <div class="form-sub">Dostarczymy choinkę pod wskazany adres dziś</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Imię <em>*</em></label>
+            <input class="form-input" id="fFirstName" type="text" placeholder="Jan" autocomplete="given-name">
+            <div class="field-err" id="e-fFirstName">Podaj imię</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nazwisko <em>*</em></label>
+            <input class="form-input" id="fLastName" type="text" placeholder="Kowalski" autocomplete="family-name">
+            <div class="field-err" id="e-fLastName">Podaj nazwisko</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefon <em>*</em></label>
+          <input class="form-input" id="fPhone" type="tel" placeholder="500 100 200" autocomplete="tel" inputmode="tel">
+          <div class="field-err" id="e-fPhone">Podaj numer (min. 9 cyfr)</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail <em>*</em></label>
+          <input class="form-input" id="fEmail" type="email" placeholder="jan@kowalski.pl" autocomplete="email" inputmode="email">
+          <div class="field-err" id="e-fEmail">Podaj poprawny e-mail</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ulica i numer <em>*</em></label>
+          <input class="form-input" id="fStreet" type="text" placeholder="ul. Kwiatowa 5" autocomplete="street-address">
+          <div class="field-err" id="e-fStreet">Podaj ulicę i numer</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Kod pocztowy <em>*</em></label>
+            <input class="form-input" id="fPostcode" type="text" placeholder="15-001" maxlength="6" inputmode="numeric">
+            <div class="field-err" id="e-fPostcode">Format: XX-XXX</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Miasto <em>*</em></label>
+            <input class="form-input" id="fCity" type="text" placeholder="Białystok" autocomplete="address-level2">
+            <div class="field-err" id="e-fCity">Podaj miasto</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-gold" style="margin-top:24px" onclick="goTo(6)">
+        Dalej — podsumowanie
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </button>
+      <button class="btn btn-ghost" onclick="goTo(4)">Wróć</button>
+    </div>
+
+    <!-- S6: PODSUMOWANIE -->
+    <div class="screen" id="s6">
+      <div class="summary-card">
+        <div class="summary-title">Podsumowanie zamówienia</div>
+        <div id="sumRows"></div>
+        <div class="s-total">
+          <span>Razem do zapłaty</span>
+          <span class="s-total-price" id="sumTotal">–</span>
+        </div>
+      </div>
+      <div class="confirm-note">
+        Płatność realizowana przez <strong>Przelewy24</strong> — po złożeniu zamówienia zostaniesz przekierowany do bezpiecznej bramki płatności. Obsługujemy BLIK, karty i przelewy bankowe.
+      </div>
+      <button class="btn btn-gold" id="bSubmit" onclick="submitOrder()">
+        Złóż zamówienie
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      </button>
+      <button class="btn btn-ghost" onclick="goTo(5)">Wróć</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="screen" id="s7">
+      <div class="success">
+        <div class="success-check">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD230" width="36" height="36"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+        </div>
+        <div class="success-title">Zamówienie złożone!</div>
+        <div class="success-sub">Potwierdzenie wysłaliśmy na Twój e-mail.<br>Kurier zadzwoni przed dostawą.</div>
+        <div class="success-detail" id="successDetail"></div>
+        <a href="/" class="btn btn-gold" style="display:inline-flex;max-width:320px;text-decoration:none;margin:0 auto;">Wróć na stronę główną</a>
+      </div>
+    </div>
+
+</div>
+</div>
+
+<!-- TRUST FOOTER -->
+<footer class="trust-footer">
+  <div class="trust-inner">
+    <div class="trust-badge">
+      <img src="data:image/png;base64,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" alt="Kraina Choinek" style="height:28px;opacity:0.9;display:block;">
+      <div class="trust-badge-text">
+        <strong>Kraina Choinek</strong>
+        Certyfikowana plantacja choinek od 1992 roku
+      </div>
+    </div>
+    <p class="trust-desc">
+      Twoje drzewko pochodzi prosto z plantacji <strong style="color:#F5F2EB">Kraina Choinek</strong> — jednej z największych i najdłużej działających plantacji choinek bożonarodzeniowych w Polsce. Od ponad 30 lat specjalizują się w uprawie świerka pospolitego (<em>Picea abies</em>) i jodły kaukaskiej (<em>Abies nordmanniana</em>). Każde drzewko rośnie od 1 do 8 lat, pielęgnowane z dbałością o jakość — nie masową produkcję.
+    </p>
+    <div class="trust-pills">
+      <div class="trust-pill"><span>✓</span> Plantacja od 1992 r.</div>
+      <div class="trust-pill"><span>✓</span> Świeże — ścinane na bieżąco</div>
+      <div class="trust-pill"><span>✓</span> Świerk i jodła kaukaska</div>
+      <div class="trust-pill"><span>✓</span> Bezpośrednio od producenta</div>
+    </div>
+    <a href="https://krainachoinek.pl" target="_blank" class="trust-link">
+      Odwiedź krainachoinek.pl
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zm-1 16H5V5h6V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6h-2v6z"/></svg>
+    </a>
+    <hr class="trust-divider">
+    <p class="trust-fine">Kurier Choinek jest autoryzowanym partnerem sprzedażowym plantacji Kraina Choinek. Zamówienie realizuje lokalny punkt sprzedaży. Płatność za zamówienia wyłącznie przez Przelewy24.</p>
+  </div>
+</footer>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────
+const O = {
+  point:'', dist:0,
+  stand:'', standLbl:'', standP:0,
+  species:'', speciesLbl:'',
+  size:'', treeP:0,
+  extras:[], extrasP:0,
+  deliveryP:0
+};
+
+// Init from URL
+const P = new URLSearchParams(window.location.search);
+O.point = P.get('punkt') || 'Nieznany punkt';
+O.dist  = parseFloat(P.get('dist') || '0');
+O.deliveryP = O.dist <= 20 ? 30 : 50;
+document.getElementById('pointTag').textContent = O.point;
+
+const HERO_TITLES = {
+  1: { lbl: 'Krok 1 — Stojak',         t: 'Czy potrzebujesz <em>stojak?</em>',        s: 'Solidne stojaki EasyFix dopasowane do każdego rozmiaru' },
+  2: { lbl: 'Krok 2 — Choinka',         t: 'Wybierz <em>gatunek</em> choinki',          s: 'Świerk, jodła kaukaska lub jodła noble — prosto z plantacji' },
+  3: { lbl: 'Krok 3 — Rozmiar',         t: 'Jaki <em>rozmiar</em> Cię interesuje?',     s: 'Od 100 do 250 cm — znajdź idealne drzewko dla siebie' },
+  4: { lbl: 'Krok 4 — Dodatki',         t: 'Czy chcesz coś <em>dodać?</em>',            s: 'Opcjonalne dodatki, które ułatwią montaż i pielęgnację' },
+  5: { lbl: 'Krok 5 — Dane dostawy',    t: 'Podaj dane <em>dostawy</em>',               s: 'Kurier zadzwoni przed przyjazdem' },
+  6: { lbl: 'Krok 6 — Podsumowanie',    t: 'Sprawdź <em>podsumowanie</em>',             s: 'Upewnij się, że wszystko się zgadza' },
+};
+
+function updateHero(n) {
+  const h = HERO_TITLES[n];
+  if (!h) return;
+  document.getElementById('stepLabel').textContent = h.lbl;
+  document.getElementById('heroTitle').innerHTML = h.t;
+  document.getElementById('heroSub').textContent = h.s;
+}
+
+// ── STEP NAV ──────────────────────────────────────────────
+function goTo(n) {
+  if (n === 6 && !validateForm()) return;
+  if (n === 6) buildSummary();
+  for (let i = 1; i <= 7; i++) {
+    document.getElementById('s'+i).classList.toggle('on', i===n);
+  }
+  updateHero(n);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── SINGLE PICK (stojak, gatunek) ────────────────────────
+function pick(type, el) {
+  const group = el.closest('.grid-2x2, .grid-3');
+  group.querySelectorAll('.pick-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  if (type === 'stand') {
+    O.stand    = el.dataset.v;
+    O.standLbl = el.dataset.lbl;
+    O.standP   = parseInt(el.dataset.p) || 0;
+    document.getElementById('b1').disabled = false;
+  } else {
+    O.species    = el.dataset.v;
+    O.speciesLbl = el.dataset.lbl;
+    document.getElementById('b2').disabled = false;
+  }
+}
+
+// ── SIZE ─────────────────────────────────────────────────
+function pickSize(el) {
+  document.querySelectorAll('.size-row').forEach(r => r.classList.remove('sel'));
+  el.classList.add('sel');
+  O.size  = el.dataset.size;
+  O.treeP = parseInt(el.dataset.price);
+  document.getElementById('b3').disabled = false;
+}
+
+// ── EXTRAS ───────────────────────────────────────────────
+function toggleExtra(el) {
+  el.classList.toggle('sel');
+  const v = el.dataset.v;
+  if (el.classList.contains('sel')) {
+    if (!O.extras.find(e => e.v===v))
+      O.extras.push({v, lbl:el.dataset.lbl, p:parseInt(el.dataset.p)});
+  } else {
+    O.extras = O.extras.filter(e => e.v!==v);
+  }
+  O.extrasP = O.extras.reduce((s,e)=>s+e.p,0);
+}
+
+// ── VALIDATION ───────────────────────────────────────────
+function validateForm() {
+  const fields = [
+    {id:'fFirstName', t:v=>v.length>1},
+    {id:'fLastName',  t:v=>v.length>1},
+    {id:'fPhone',     t:v=>v.replace(/\s/g,'').length>=9},
+    {id:'fEmail',     t:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'fStreet',    t:v=>v.length>3},
+    {id:'fPostcode',  t:v=>/^\d{2}-?\d{3}$/.test(v)},
+    {id:'fCity',      t:v=>v.length>1},
+  ];
+  let ok = true;
+  fields.forEach(f=>{
+    const el  = document.getElementById(f.id);
+    const err = document.getElementById('e-'+f.id);
+    const v   = f.t(el.value.trim());
+    el.classList.toggle('err',!v);
+    if(err) err.style.display = v?'none':'block';
+    if(!v) ok=false;
+  });
+  return ok;
+}
+
+// ── SUMMARY ──────────────────────────────────────────────
+function buildSummary() {
+  const addr = `${document.getElementById('fStreet').value}, ${document.getElementById('fPostcode').value} ${document.getElementById('fCity').value}`;
+  const total = O.treeP + O.standP + O.extrasP + O.deliveryP;
+
+  let rows = `
+    <div class="s-row"><span>Punkt sprzedaży</span><strong>${O.point}</strong></div>
+    <div class="s-row"><span>Gatunek</span><strong>${O.speciesLbl}</strong></div>
+    <div class="s-row"><span>Rozmiar</span><strong>${O.size.replace('-','–')} cm</strong></div>
+    <div class="s-row"><span>Choinka</span><strong>${O.treeP} zł</strong></div>`;
+
+  if (O.stand !== 'none')
+    rows += `<div class="s-row"><span>Stojak</span><strong>${O.standLbl} — ${O.standP} zł</strong></div>`;
+
+  O.extras.forEach(e=>{
+    rows += `<div class="s-row"><span>${e.lbl}</span><strong>${e.p} zł</strong></div>`;
+  });
+
+  rows += `
+    <div class="s-row"><span>Dostawa (${O.dist<=20?'do 20 km':'pow. 20 km'})</span><strong>${O.deliveryP} zł</strong></div>
+    <div class="s-row"><span>Adres dostawy</span><strong>${addr}</strong></div>
+    <div class="s-row"><span>Telefon</span><strong>${document.getElementById('fPhone').value}</strong></div>`;
+
+  document.getElementById('sumRows').innerHTML = rows;
+  document.getElementById('sumTotal').textContent = total + ' zł';
+}
+
+// ── SUBMIT ───────────────────────────────────────────────
+function submitOrder() {
+  const btn = document.getElementById('bSubmit');
+  btn.disabled = true;
+  btn.textContent = 'Wysyłanie…';
+  setTimeout(()=>{
+    const total = O.treeP + O.standP + O.extrasP + O.deliveryP;
+    const addr  = `${document.getElementById('fStreet').value}, ${document.getElementById('fPostcode').value} ${document.getElementById('fCity').value}`;
+    const orderId = '#' + Date.now().toString().slice(-6);
+    document.getElementById('s6').classList.remove('on');
+    document.getElementById('s7').classList.add('on');
+    document.getElementById('successDetail').innerHTML = `
+      <div class="sd-row"><span>Nr zamówienia</span><strong>${orderId}</strong></div>
+      <div class="sd-row"><span>Choinka</span><strong>${O.speciesLbl}, ${O.size.replace('-','–')} cm</strong></div>
+      ${O.stand!=='none'?`<div class="sd-row"><span>Stojak</span><strong>${O.standLbl}</strong></div>`:''}
+      ${O.extras.map(e=>`<div class="sd-row"><span>${e.lbl}</span><strong>tak</strong></div>`).join('')}
+      <div class="sd-row"><span>Adres</span><strong>${addr}</strong></div>
+      <div class="sd-row"><span>Do zapłaty</span><strong>${total} zł</strong></div>`;
+    window.scrollTo({top:0,behavior:'smooth'});
+  },900);
+}
+
+// ── POSTCODE FORMAT ──────────────────────────────────────
+document.getElementById('fPostcode').addEventListener('input',function(){
+  let v=this.value.replace(/\D/g,'');
+  if(v.length>2) v=v.slice(0,2)+'-'+v.slice(2,5);
+  this.value=v;
+});
+</script>
+</body>
+</html>
