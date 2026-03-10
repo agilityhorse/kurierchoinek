@@ -1377,6 +1377,18 @@ body {
 }
 
 
+
+/* ── TRUST FOOTER (z zamow) ── */
+.trust-footer{background:#003a36;border-top:1px solid rgba(255,255,255,0.08);padding:36px 20px 48px;}
+.trust-inner{max-width:800px;margin:0 auto;}
+.trust-badge{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.trust-badge-text{font-size:0.78rem;color:rgba(245,242,235,0.55);line-height:1.5;}
+.trust-desc{font-size:0.82rem;color:rgba(245,242,235,0.6);line-height:1.7;margin-bottom:20px;}
+.trust-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+.trust-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:5px 12px;font-size:0.72rem;color:rgba(245,242,235,0.7);}
+.trust-link{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;color:#FFD230;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(255,210,48,0.3);padding-bottom:1px;transition:opacity 0.2s;}
+.trust-divider{border:none;border-top:1px solid rgba(255,255,255,0.07);margin:20px 0;}
+.trust-fine{font-size:0.7rem;color:rgba(245,242,235,0.35);line-height:1.6;}
 </style>
 </head>
 <body>
@@ -1523,7 +1535,7 @@ body {
 
     <div class="about-stats">
       <div class="about-stat">
-        <div class="about-stat-num">57</div>
+        <div class="about-stat-num">72</div>
         <div class="about-stat-label">punktów w Polsce</div>
       </div>
       <div class="about-stat-divider"></div>
@@ -1595,7 +1607,7 @@ body {
             <svg viewBox="0 0 24 24" fill="none" stroke="#005F5A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </div>
         </div>
-        <div class="faq-answer">Posiadamy 57 punktów sprzedaży w całej Polsce. Wpisz swój adres, aby sprawdzić najbliższy punkt.</div>
+        <div class="faq-answer">Posiadamy 72 punktów sprzedaży w całej Polsce. Wpisz swój adres, aby sprawdzić najbliższy punkt.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
@@ -1647,7 +1659,7 @@ body {
   <div class="locations-inner">
     <h3 class="locations-eyebrow">Gdzie działamy</h3>
     <h2 class="locations-title">Nasze lokalizacje</h2>
-    <p class="locations-sub">57 punktów sprzedaży w całej Polsce. Kliknij miasto, aby zobaczyć szczegóły punktu i zamówić dostawę.</p>
+    <p class="locations-sub">72 punktów sprzedaży w całej Polsce. Kliknij miasto, aby zobaczyć szczegóły punktu i zamówić dostawę.</p>
 
     <div class="locations-grid">
       <a href="/lokalizacje/andrychow" class="loc-item">
@@ -2016,44 +2028,36 @@ body {
 </section>
 
 <!-- ─── STOPKA ───────────────────────────────── -->
-<footer class="footer" itemscope itemtype="https://schema.org/LocalBusiness">
-  <meta itemprop="name" content="Kurier Choinek" />
-  <meta itemprop="url" content="https://kurierchoinek.pl" />
-
-  <div class="footer-inner">
-
-    <div class="footer-brand">
-      <div class="footer-logo">
-        <div class="footer-logo-text">Kurier<span>Choinek</span></div>
+<footer class="trust-footer">
+  <div class="trust-inner">
+    <div class="trust-badge">
+      <img src="data:image/png;base64,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" alt="Kraina Choinek" style="height:28px;opacity:0.9;display:block;">
+      <div class="trust-badge-text">
+        <strong>Kraina Choinek</strong>
+        Certyfikowana plantacja choinek od 1992 roku
       </div>
-      <p class="footer-tagline">Żywe choinki z dostawą do domu.<br>Partner plantacji Kraina Choinek.</p>
     </div>
-
-    <div class="footer-contact">
-      <h4 class="footer-heading">Kontakt</h4>
-      <a href="tel:+48800123456" class="footer-phone" itemprop="telephone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        800 123 456
-      </a>
-      <p class="footer-hours" itemprop="openingHours" content="Mo-Sa 08:00-20:00">pon–sob, 8:00–20:00</p>
-      <a href="/cdn-cgi/l/email-protection#482327263c29233c082b202721262329233d3a212d3a663824" class="footer-email" itemprop="email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <span class="__cf_email__" data-cfemail="442f2b2a30252f3004272c2b2d2a2f252f31362d21366a3428">[email&#160;protected]</span>
-      </a>
+    <p class="trust-desc">
+      Twoje drzewko pochodzi prosto z plantacji <strong style="color:#F5F2EB">Kraina Choinek</strong> — jednej z największych i najdłużej działających plantacji choinek bożonarodzeniowych w Polsce. Od ponad 30 lat specjalizują się w uprawie świerka pospolitego (<em>Picea abies</em>) i jodły kaukaskiej (<em>Abies nordmanniana</em>). Każde drzewko rośnie od 1 do 8 lat, pielęgnowane z dbałością o jakość — nie masową produkcję.
+    </p>
+    <div class="trust-pills">
+      <div class="trust-pill"><span>✓</span> Plantacja od 1992 r.</div>
+      <div class="trust-pill"><span>✓</span> Świeże — ścinane na bieżąco</div>
+      <div class="trust-pill"><span>✓</span> Świerk i jodła kaukaska</div>
+      <div class="trust-pill"><span>✓</span> Bezpośrednio od producenta</div>
     </div>
-
+    <a href="https://krainachoinek.pl" target="_blank" class="trust-link">
+      Odwiedź krainachoinek.pl
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zm-1 16H5V5h6V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6h-2v6z"/></svg>
+    </a>
+    <hr class="trust-divider">
+    <p class="trust-fine">Kurier Choinek jest autoryzowanym partnerem sprzedażowym plantacji Kraina Choinek. Zamówienie realizuje lokalny punkt sprzedaży. Płatność za zamówienia wyłącznie przez Przelewy24.</p>
   </div>
-
-  <div class="footer-bottom">
-    <p>© <span id="footerYear"></span> KurierChoinek. Wszelkie prawa zastrzeżone.</p>
-    <p>Partner: <a href="https://krainachoinek.pl" target="_blank" rel="noopener">Kraina Choinek</a> · <a href="/regulamin">Regulamin sklepu</a></p>
-  </div>
-
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ─── FOOTER YEAR ────────────────────────────────────────── */
-document.getElementById('footerYear').textContent = new Date().getFullYear();
+const _fy = document.getElementById('footerYear'); if (_fy) _fy.textContent = new Date().getFullYear();
 
 /* ─── FAQ ────────────────────────────────────────────────── */
 function toggleFaq(el) {
@@ -2644,7 +2648,7 @@ async function findNearestByCity() {
       "name": "W jakich miastach działacie?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Posiadamy 57 punktów sprzedaży w całej Polsce."
+        "text": "Posiadamy 72 punktów sprzedaży w całej Polsce."
       }
     },
     {
